@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="styles-1.css" />
   <link rel="stylesheet" href="styles-2.css" />
   <link rel="stylesheet" href="styles-3.css" />
+  <link rel="stylesheet" href="styles-4.css" />
 </head>
 <body>
 <div class="app">
@@ -30,7 +31,7 @@
 
     <section id="overviewView" class="view active">
 
-    <section class="hero"><div class="hero-bg"></div><div class="hero-copy"><h2>Your lounge, under control.</h2><p>See every station, manage sessions and keep the floor moving — even when you’re away.</p><div class="live-stats"><div><strong>4 / 7</strong><span>Active stations</span></div><div data-owner-only><strong>11h 42m</strong><span>Total play time today</span></div><div class="shift-panel"><strong>3h 18m</strong><span>Since your first login today</span></div><div><strong>57%</strong><span>Occupancy</span></div></div></div></section>
+    <section class="hero"><div class="hero-bg"></div><div class="hero-copy"><h2>Your lounge, under control.</h2><p>See every station, manage sessions and keep the floor moving — even when you’re away.</p><div class="live-stats"><div><strong id="stationActiveCount">4 / 7</strong><span>Active stations</span></div><div data-owner-only><strong>11h 42m</strong><span>Total play time today</span></div><div class="shift-panel"><strong>3h 18m</strong><span>Since your first login today</span></div><div><strong id="stationOccupancy">57%</strong><span>Occupancy</span></div></div></div></section>
 
     <div class="access-note shift-panel"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M8 11V8a4 4 0 0 1 8 0v3M6 11h12v9H6v-9Z" stroke="currentColor" stroke-width="1.8"/><path d="M12 15v2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><div><strong id="accessTitle">Supervisor access</strong>Revenue and lounge-wide play-hour totals are hidden. Your shift time starts at your first login today.</div></div>
 
@@ -127,10 +128,11 @@
     </section>
 
     <section id="stationsView" class="view">
-      <div class="section-head"><div><h2>Station control room</h2><div class="panel-sub">Select a console to preview every floor-control interaction.</div></div><button id="backOverview">Back to overview</button></div>
+      <div class="section-head"><div><h2>Station control room</h2><div class="panel-sub">Select a console to preview every floor-control interaction.</div></div><div class="station-config-actions"><button class="secondary-btn" id="addStation" data-owner-only>+ Add station</button><button class="danger-btn" id="removeStation" data-owner-only>Remove selected</button><button id="backOverview">Back to overview</button></div></div>
+      <section class="form-panel station-form" id="stationForm" data-owner-only><div class="section-head"><div><h2>Add a station</h2><div class="panel-sub">Register a console in this open demo, then select it from the device rail.</div></div><button id="closeStationForm">Close</button></div><div class="form-grid"><div class="field"><label for="newStationName">Station name</label><input id="newStationName" value="Station 08"></div><div class="field"><label for="newStationType">Console</label><select id="newStationType"><option value="PlayStation 5">PlayStation 5</option><option value="PlayStation 4">PlayStation 4</option></select></div><div class="field"><label for="newStationState">Initial state</label><select id="newStationState"><option value="Ready">Ready</option><option value="Standby">Standby</option></select></div><div class="field"><label for="newStationRate">Hourly rate</label><select id="newStationRate"><option value="20">20 MAD / hour</option><option value="15">15 MAD / hour</option><option value="25">25 MAD / hour</option></select></div><div class="station-form-note"><b>Owner control:</b> adding or removing a station updates the overview and console rail immediately. Demo changes are saved in this browser.</div></div><div class="event-editor-actions"><button class="secondary-btn" id="cancelStation">Cancel</button><button class="primary" id="saveStation">Add station</button></div></section>
       <div class="access-note shift-panel"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M8 11V8a4 4 0 0 1 8 0v3M6 11h12v9H6v-9Z" stroke="currentColor" stroke-width="1.8"/></svg><div><strong>Floor controls only</strong>Daily earnings and lounge-wide play hours stay hidden for supervisor and worker accounts.</div></div>
       <div class="station-workspace">
-        <aside class="station-rail"><div class="rail-head"><h2>All stations</h2><span>7 connected</span></div><div class="rail-list" id="stationRail"></div></aside>
+        <aside class="station-rail"><div class="rail-head"><h2>All stations</h2><span id="stationCountLabel">7 connected</span></div><div class="rail-list" id="stationRail"></div><div class="station-empty" id="stationEmpty">No stations are configured yet.</div></aside>
         <article class="station-console">
           <div class="console-head"><div><h2 id="consoleTitle">Station 01</h2><p id="consoleMeta">PlayStation 5 · EA Sports FC 26</p></div><div class="console-state"><strong id="consoleTimer">00:42:18</strong><span id="consoleState">18 min left</span></div></div>
           <div class="console-tabs" role="tablist"><button class="console-tab active" data-tab="control">Control</button><button class="console-tab" data-tab="session">Session</button><button class="console-tab" data-tab="payments">Payments</button><button class="console-tab" data-tab="history">History</button></div>
